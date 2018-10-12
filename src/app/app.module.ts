@@ -15,6 +15,9 @@ import { WatchTvService } from './watch-tv/watch-tv.service';
 import { ScreenComponent } from './screen/screen.component';
 import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 import { CommentComponent } from './comment-tree/comment/comment.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { InfoPanelComponent } from './info-panel/info-panel.component';
 
 const appRoutes: Routes = [
     { path: '', component: WatchTvComponent },
@@ -27,10 +30,13 @@ const appRoutes: Routes = [
       WatchTvComponent,
       ScreenComponent,
       CommentTreeComponent,
-      CommentComponent
+      CommentComponent,
+      InfoPanelComponent
   ],
     imports: [
-        HttpClientModule,
+        FormsModule,
+        MatInputModule,
+    HttpClientModule,
     BrowserModule,
     LayoutModule,
     MatToolbarModule,
@@ -46,9 +52,9 @@ const appRoutes: Routes = [
       )
   ],
     providers: [
-        WatchTvService,
-        ChannelService,
-        EmbedService
+    WatchTvService,
+    ChannelService,
+    EmbedService
   ],
   bootstrap: [AppComponent]
 })

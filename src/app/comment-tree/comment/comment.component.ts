@@ -1,6 +1,5 @@
 import { Comment } from './../../services/channel.service';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-
 @Component({
   selector: 'app-comment',
     template: `
@@ -12,7 +11,6 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
      </li>
     </ul>
   </div>
-  
     `,
 })
 export class CommentComponent implements OnInit, OnChanges {

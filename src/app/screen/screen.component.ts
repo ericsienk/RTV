@@ -8,7 +8,6 @@ import { EmbedService } from '../services/embed.service';
   styleUrls: ['./screen.component.css']
 })
 export class ScreenComponent implements OnChanges {
-
     @Input() video: Video;
     private iframeScreen: string;
     
@@ -16,10 +15,9 @@ export class ScreenComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
     if (this.video && this.video.url) {
-            this.iframeScreen = this.embedService.embed(this.video.url, { attr: { height: '100%', width: '100%' } });
+        this.iframeScreen = this.embedService.embed(this.video.url, { attr: { height: '100%', width: '100%' } });
     } else {
         this.iframeScreen = 'Loading...';
       }
   }
-
 }

@@ -1,4 +1,7 @@
 <app-screen [video]="video"></app-screen>
-<button (click)="previous()"><=</button>
-<button (click)="next()">=></button>
-<app-comment-tree [postId]="videoId" subRedditName="videos"></app-comment-tree>
+<div class="margin18px">
+    <h1 *ngIf="video && video.title">{{video.title}}</h1>
+    <button (click)="previous()"><=</button>
+    <button (click)="next()">=></button>
+    <app-comment-tree [postId]="videoId" subRedditName="videos"></app-comment-tree>
+</div>
