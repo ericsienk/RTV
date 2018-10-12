@@ -1,3 +1,6 @@
+import { EmbedService } from './services/embed.service';
+import { ChannelService } from './services/channel.service';
+import { HttpClientModule } from '@angular/common/http'; 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,6 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RouterModule, Routes } from '@angular/router';
 import { WatchTvComponent } from './watch-tv/watch-tv.component';
+import { WatchTvService } from './watch-tv/watch-tv.service';
+import { ScreenComponent } from './screen/screen.component';
+import { CommentTreeComponent } from './comment-tree/comment-tree.component';
+import { CommentComponent } from './comment-tree/comment/comment.component';
 
 const appRoutes: Routes = [
     { path: '', component: WatchTvComponent },
@@ -17,9 +24,13 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    WatchTvComponent
+      WatchTvComponent,
+      ScreenComponent,
+      CommentTreeComponent,
+      CommentComponent
   ],
-  imports: [
+    imports: [
+        HttpClientModule,
     BrowserModule,
     LayoutModule,
     MatToolbarModule,
@@ -28,13 +39,17 @@ const appRoutes: Routes = [
     MatIconModule,
     MatListModule,
     BrowserAnimationsModule,
-    AngularFontAwesomeModule,
+        AngularFontAwesomeModule,
     RouterModule.forRoot(
         appRoutes,
         { enableTracing: true } // <-- debugging purposes only
       )
   ],
-  providers: [],
+    providers: [
+        WatchTvService,
+        ChannelService,
+        EmbedService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

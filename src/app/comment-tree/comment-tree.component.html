@@ -1,0 +1,4 @@
+
+  <div *ngIf="(comments$ | async) as comments">
+    <app-comment [comments]="comments"></app-comment>
+  </div>
