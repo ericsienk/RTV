@@ -18,6 +18,8 @@ import { CommentComponent } from './comment-tree/comment/comment.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { InfoPanelComponent } from './info-panel/info-panel.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import {MatChipsModule} from '@angular/material/chips';
 
 const appRoutes: Routes = [
     { path: '', component: WatchTvComponent },
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
     imports: [
         FormsModule,
         MatInputModule,
+        MatChipsModule,
     HttpClientModule,
     BrowserModule,
     LayoutModule,
@@ -44,8 +47,9 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatBottomSheetModule,
     BrowserAnimationsModule,
-        AngularFontAwesomeModule,
+    AngularFontAwesomeModule,
     RouterModule.forRoot(
         appRoutes,
         { enableTracing: true } // <-- debugging purposes only
@@ -55,7 +59,10 @@ const appRoutes: Routes = [
     WatchTvService,
     ChannelService,
     EmbedService
-  ],
+    ],
+    entryComponents: [
+        CommentTreeComponent,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

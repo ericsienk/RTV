@@ -1,4 +1,18 @@
 body {
     margin: 0;
-    overflow-y: scroll;
+}
+
+ul {
+    list-style-type: none;
+    border-left: #dadada 1px solid;
+    padding-inline-start: 12px;
+    font-size: 12px;
+}
+
+ul .level1 {
+    font-size: 15px;
+}
+
+li {
+    list-style-type: none;
 }

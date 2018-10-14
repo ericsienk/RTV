@@ -1,6 +1,7 @@
 import { ChannelService, Comment } from './../services/channel.service';
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, Inject, Optional } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-comment-tree',
@@ -10,12 +11,22 @@ import { Observable } from 'rxjs';
 export class CommentTreeComponent implements OnChanges {
     @Input() postId: string;
     @Input() subRedditName: string;
-    private comments$: Observable<Comment[]>;
-    constructor(private channelService: ChannelService) { }
+    comments$: Observable<Comment[]>;
+    constructor(private channelService: ChannelService, @Optional() @Inject(MAT_BOTTOM_SHEET_DATA) public data: any = null) {
+        if (data) {
+            this.postId = data.postId;
+            this.subRedditName = data.subRedditName;
+            this.initalize();
+        }
+     }
 
     ngOnChanges() {
+        this.initalize();
+    }
+
+    initalize() {
         if (this.subRedditName && this.postId) {
             this.comments$ = this.channelService.getComments(this.subRedditName, this.postId);
-      }
-  }
+        }
+    }
 }

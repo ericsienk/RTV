@@ -1,7 +1,21 @@
 <app-screen [video]="video"></app-screen>
-<div class="margin18px">
-    <h1 *ngIf="video && video.title">{{video.title}}</h1>
-    <button (click)="previous()"><=</button>
-    <button (click)="next()">=></button>
-    <app-comment-tree [postId]="videoId" subRedditName="videos"></app-comment-tree>
+<div class="actionBar">
+    <button mat-raised-button (click)="previous()" class="actionButton">
+            <fa name="arrow-left"></fa>
+    </button>
+    <div class="margin18px" *ngIf="video && video.id">
+        <h2 class="mat-h2" style="margin-bottom:0">{{video.title}}</h2>
+        <mat-chip-list>
+            <mat-chip><span class="caption">{{video.author}}</span></mat-chip>
+        </mat-chip-list>
+        <div class="textAlignCenter" style="margin-top:-20px" *ngIf="!(isHandset$ | async); else IsHandset">
+            <button mat-button color="accent" (click)="openBottomSheet()">view comments</button>
+        </div>
+    </div>
+    <button mat-raised-button (click)="next()" class="actionButton rightButton">
+        <fa name="arrow-right"></fa>
+    </button>
 </div>
+<ng-template #IsHandset>
+    <app-comment-tree [postId]="videoId" subRedditName="videos"></app-comment-tree>
+</ng-template>

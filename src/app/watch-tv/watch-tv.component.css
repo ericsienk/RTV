@@ -1,3 +1,27 @@
 .margin18px {
-    margin: 18px;
+    margin: 9px 75px 0 75px;
+}
+
+.textAlignCenter {
+    text-align: center;
+}
+
+.actionButton fa {
+    vertical-align: top;
+}
+
+.actionButton {
+    position: fixed;
+    bottom: 0;
+    border-radius: 4px;
+    height: calc(100vh - 50vw - 64px);
+    min-height: 92px;
+    width: 40px;
+    min-width: 40px;
+    left: 0;
+}
+
+.rightButton {
+    left: unset;
+    right: 0px;
 }

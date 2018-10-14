@@ -1,3 +1,5 @@
-<div *ngIf="(comments$ | async) as comments">
-    <app-comment [comments]="comments"></app-comment>
+<div class="comment-container">
+    <div *ngIf="(comments$ | async) as comments" class="fadeIn">
+        <app-comment [comments]="comments"></app-comment>
+    </div>
 </div>

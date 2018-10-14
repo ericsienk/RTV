@@ -9,6 +9,7 @@ export class Video {
         public domain: string,
         public title: string,
         public id: string,
+        public author: string
     ) {}
 }   
 
@@ -17,7 +18,8 @@ export class Comment {
         public id: string,
         public author: string,
         public text: string,
-        public replies: Comment[]
+        public replies: Comment[],
+        public level: number
     ) {}
 }
 
@@ -45,14 +47,15 @@ export class ChannelService {
                         data['url'],
                         data['domain'],
                         data['title'],
-                        data['id']
+                        data['id'],
+                        data['author']
                     );
                 });
             })
         );
     }
 
-    private buildComments(responseComment: object, level: number = 1): Comment[] {
+    private buildComments(responseComment: object, level: number): Comment[] {
         if (responseComment && responseComment['data'] && (responseComment['data']['children'] instanceof Array)) {
             return responseComment['data']['children'].map(c => {
                 const data = c['data'] || {};
@@ -60,7 +63,8 @@ export class ChannelService {
                     data['id'],
                     data['author'],
                     data['body'],
-                    this.buildComments(data['replies'], level + 1)
+                    this.buildComments(data['replies'], level + 1),
+                    level
                 );
             });
         } else {
@@ -72,7 +76,7 @@ export class ChannelService {
     public getComments(subRedditName: string, postId): Observable<Comment[]> {
         return this.http.get(this.baseRedditUrl + subRedditName + '/comments/' + postId + '.json').pipe(
             map(result => {
-                return this.buildComments(result[1] ? result[1] : {});
+                return this.buildComments(result[1] ? result[1] : {}, 1);
             })
         );
     }

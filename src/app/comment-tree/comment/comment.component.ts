@@ -6,12 +6,13 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
     <div *ngFor="let comment of comments">
     <ul>
      <li>
-       {{comment.text}}
+       <span class="level{{comment.level}}">{{comment.text}}</span>
        <app-comment [comments]="comment.replies" *ngIf="comment.replies.length"></app-comment>
      </li>
     </ul>
   </div>
     `,
+    styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit, OnChanges {
 

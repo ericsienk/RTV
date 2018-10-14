@@ -9,13 +9,16 @@ import { EmbedService } from '../services/embed.service';
 })
 export class ScreenComponent implements OnChanges {
     @Input() video: Video;
-    private iframeScreen: string;
+    iframeScreen: string;
     
     constructor(private embedService: EmbedService) {}
 
     ngOnChanges(changes: SimpleChanges) {
     if (this.video && this.video.url) {
-        this.iframeScreen = this.embedService.embed(this.video.url, { attr: { height: '100%', width: '100%' } });
+        this.iframeScreen = this.embedService.embed(this.video.url, {
+            query: {autoplay: 1, rel: 0},
+            attr: { height: '100%', width: '100%', allow: 'autoplay' }
+        });
     } else {
         this.iframeScreen = 'Loading...';
       }
