@@ -2,7 +2,6 @@ import { Observable, of } from 'rxjs';
 import {Video, ChannelService } from './../services/channel.service';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +11,13 @@ export class WatchTvService {
     private videos: Video[];
     private currentIndex: number;
     private initialized: boolean;
-    constructor(private channelService: ChannelService,  private sanitizer: DomSanitizer) {
+    constructor(private channelService: ChannelService) {
         this.videos = [];
         this.currentIndex = -1;
     }
 
     public initialize(subreddit: string = 'videos', lastVideo: Video = null): Observable<boolean> {
-        return this.channelService.getVideos(subreddit, 2, lastVideo).pipe(map(videos => {
+        return this.channelService.getVideos(subreddit, 100, lastVideo).pipe(map(videos => {
             this.videos = this.videos.concat(videos || []);
             this.initialized = true;
             return this.initialized;
