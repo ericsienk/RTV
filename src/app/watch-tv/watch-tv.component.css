@@ -14,8 +14,8 @@
     position: fixed;
     bottom: 0;
     border-radius: 4px;
-    height: calc(100vh - 50vw - 64px);
-    min-height: 92px;
+    height: calc(100vh - 50vw);
+    min-height: 25vh;
     width: 40px;
     min-width: 40px;
     left: 0;
