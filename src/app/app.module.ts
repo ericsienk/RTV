@@ -1,3 +1,4 @@
+import { FullscreenService } from './services/fullscreen.service';
 import { EmbedService } from './services/embed.service';
 import { ChannelService } from './services/channel.service';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -19,7 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { InfoPanelComponent } from './info-panel/info-panel.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 
 const appRoutes: Routes = [
     { path: '', component: WatchTvComponent },
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     providers: [
     WatchTvService,
     ChannelService,
-    EmbedService
+    EmbedService,
+    FullscreenService
     ],
     entryComponents: [
         CommentTreeComponent,
