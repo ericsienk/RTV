@@ -1,4 +1,4 @@
-<app-screen [video]="video"></app-screen>
+<rtv-screen [video]="video"></rtv-screen>
 <div class="actionBar">
     <button mat-raised-button (click)="previous()" class="actionButton">
             <fa name="arrow-left"></fa>
@@ -17,5 +17,5 @@
     </button>
 </div>
 <ng-template #IsHandset>
-    <app-comment-tree [postId]="videoId" subRedditName="videos"></app-comment-tree>
+    <rtv-comment-tree [postId]="videoId" [subredditName]="channelService"></rtv-comment-tree>
 </ng-template>

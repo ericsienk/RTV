@@ -1,0 +1,21 @@
+<img *ngIf="isImage; else iframe" [src]="source"/>
+<ng-template #iframe>
+    <iframe *ngIf="isIframe; else htmlVideo"
+        autoplay 
+        frameborder="0" 
+        webkitallowfullscreen mozallowfullscreen allowfullscreen
+        height="100%" 
+        width="100%"
+        [src]="source">
+    </iframe>
+</ng-template>
+<ng-template #htmlVideo>
+        <video controls 
+            autoplay 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            webkitallowfullscreen mozallowfullscreen allowfullscreen>
+                <source type="video/mp4" [src]="source"/>
+        </video>
+</ng-template>

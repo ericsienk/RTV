@@ -1,3 +1,9 @@
 <div class="resp-container">
-    <div class="resp-iframe" [innerHtml]="iframeScreen"></div>
+    <div class="resp-content respImgWrapper">
+        <ng-template rtvEmbedable></ng-template>
+        <div *ngIf="link">
+            <h4>Video format is not supported yet</h4>
+            <a [href]="link">{{link}}</a>
+        </div>
+    </div>
 </div>

@@ -37,3 +37,10 @@ li {
     top: 4px;
     position: absolute;
 }
+
+.respImgWrapper img {
+    height: 100%;
+    width: auto;
+    margin: auto;
+    display: block;
+}

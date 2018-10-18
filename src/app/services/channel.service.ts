@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, flatMap } from 'rxjs/operators';
 
 export class Video {
     constructor(
@@ -33,24 +33,29 @@ export class ChannelService {
 
     constructor(private http: HttpClient) { }
     
-    public getVideos(subRedditName: string, limit: number, lastVideo: Video): Observable<Video[]> {
-        let params = new HttpParams().append('limit', limit.toString());
+    public getVideos(subredditName: string, limit: number, lastVideo: Video): Observable<Video[]> {
+        let params = new HttpParams().append('limit', limit.toString()).append('raw_json', '1');
         if (lastVideo && lastVideo.id) {
             params = params.append('after', 't3_' + lastVideo.id);
         }
 
-        return this.http.get(this.baseRedditUrl + subRedditName + '.json', { params: params }).pipe(
-            map(result => {
-                return result['data']['children'].map(v => {
+        return this.http.get(this.baseRedditUrl + subredditName + '.json', { params: params }).pipe(
+            flatMap(result => {
+                const videos: Video[] = [];
+
+                result['data']['children'].forEach(v => {
                     const data = v['data'];
-                    return new Video(
+                    const video = new Video(
                         data['url'],
                         data['domain'],
                         data['title'],
                         data['id'],
                         data['author']
                     );
+
+                    videos.push(video);
                 });
+                return of(videos);
             })
         );
     }
@@ -70,11 +75,11 @@ export class ChannelService {
         } else {
             return [];
         }
-
     }
 
-    public getComments(subRedditName: string, postId): Observable<Comment[]> {
-        return this.http.get(this.baseRedditUrl + subRedditName + '/comments/' + postId + '.json').pipe(
+    public getComments(postId: string, subRedditName: string): Observable<Comment[]> {
+        const params = new HttpParams().append('raw_json', '1');
+        return this.http.get(this.baseRedditUrl + subRedditName + '/comments/' + postId + '.json', {params: params}).pipe(
             map(result => {
                 return this.buildComments(result[1] ? result[1] : {}, 1);
             })

@@ -11,12 +11,22 @@ export class WatchTvService {
     private videos: Video[];
     private currentIndex: number;
     private initialized: boolean;
+    private selectedSubredditName = 'videos';
+    private suggestedSubredditNameList = [
+        'videos',
+        'aww',
+        'oddlysatisfying',
+        'woahtube',
+        'blackmagicfuckery',
+    ];
+
     constructor(private channelService: ChannelService) {
         this.videos = [];
         this.currentIndex = -1;
     }
 
-    public initialize(subreddit: string = 'videos', lastVideo: Video = null): Observable<boolean> {
+    public initialize(lastVideo: Video = null, subreddit: string = this.selectedSubredditName): Observable<boolean> {
+        this.selectedSubredditName = subreddit;
         return this.channelService.getVideos(subreddit, 100, lastVideo).pipe(map(videos => {
             this.videos = this.videos.concat(videos || []);
             this.initialized = true;
@@ -49,7 +59,7 @@ export class WatchTvService {
         if (this.hasNext()) {
             return of(this.getVideo(this.currentIndex + 1));
         } else {
-            return this.initialize('videos', this.getCurrentVideo()).pipe(map(() => {
+            return this.initialize(this.getCurrentVideo()).pipe(map(() => {
                 return this.getVideo(this.currentIndex + 1);
             }));
         }
@@ -61,5 +71,15 @@ export class WatchTvService {
         } else if (this.videos.length > 0) {
             return of(this.getVideo(0));
         }
+    }
+
+    public getSubredditName(): string {
+        return this.selectedSubredditName;
+    }
+
+    public setSubredditName(subredditName: string): Observable<Video> {
+        this.selectedSubredditName = subredditName;
+        this.videos = [];
+        return this.next();
     }
 }

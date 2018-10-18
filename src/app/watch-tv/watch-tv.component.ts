@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-watch-tv',
+  selector: 'rtv-watch-tv',
   templateUrl: './watch-tv.component.html',
   styleUrls: ['./watch-tv.component.css']
 })
@@ -45,7 +45,7 @@ export class WatchTvComponent implements OnInit {
         this.bottomSheet.open(CommentTreeComponent, {
             data: {
                 postId: this.videoId,
-                subRedditName: 'videos'
+                subredditName: this.tv.getSubredditName()
             }
         });
     }

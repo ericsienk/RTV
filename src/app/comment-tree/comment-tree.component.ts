@@ -4,18 +4,18 @@ import { Observable } from 'rxjs';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-comment-tree',
+  selector: 'rtv-comment-tree',
   templateUrl: './comment-tree.component.html',
   styleUrls: ['./comment-tree.component.css']
 })
 export class CommentTreeComponent implements OnChanges {
     @Input() postId: string;
-    @Input() subRedditName: string;
+    @Input() subredditName: string;
     comments$: Observable<Comment[]>;
     constructor(private channelService: ChannelService, @Optional() @Inject(MAT_BOTTOM_SHEET_DATA) public data: any = null) {
         if (data) {
             this.postId = data.postId;
-            this.subRedditName = data.subRedditName;
+            this.subredditName = data.subredditName;
             this.initalize();
         }
      }
@@ -25,8 +25,8 @@ export class CommentTreeComponent implements OnChanges {
     }
 
     initalize() {
-        if (this.subRedditName && this.postId) {
-            this.comments$ = this.channelService.getComments(this.subRedditName, this.postId);
+        if (this.postId && this.subredditName) {
+            this.comments$ = this.channelService.getComments(this.postId, this.subredditName);
         }
     }
 }

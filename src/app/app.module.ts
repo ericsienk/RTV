@@ -18,9 +18,17 @@ import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 import { CommentComponent } from './comment-tree/comment/comment.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { InfoPanelComponent } from './info-panel/info-panel.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatChipsModule } from '@angular/material/chips';
+
+import { EmbedableDirective } from './embedable/embedable.directive';
+import { VimeoComponent } from './embedable/vimeo/vimeo.component';
+import { RedditComponent } from './embedable/reddit/reddit.component';
+import { ImgurComponent } from './embedable/imgur/imgur.component';
+import { GfycatComponent } from './embedable/gfycat/gfycat.component';
+import { DailymotionComponent } from './embedable/dailymotion/dailymotion.component';
+import { YoutubeComponent } from './embedable/youtube/youtube.component';
+import { TwitterComponent } from './embedable/twitter/twitter.component';
 
 const appRoutes: Routes = [
     { path: '', component: WatchTvComponent },
@@ -34,12 +42,19 @@ const appRoutes: Routes = [
       ScreenComponent,
       CommentTreeComponent,
       CommentComponent,
-      InfoPanelComponent
+      EmbedableDirective,
+      YoutubeComponent,
+      RedditComponent,
+      VimeoComponent,
+      DailymotionComponent,
+      GfycatComponent,
+      ImgurComponent,
+      TwitterComponent
   ],
     imports: [
-        FormsModule,
-        MatInputModule,
-        MatChipsModule,
+    FormsModule,
+    MatInputModule,
+    MatChipsModule,
     HttpClientModule,
     BrowserModule,
     LayoutModule,
@@ -64,6 +79,12 @@ const appRoutes: Routes = [
     ],
     entryComponents: [
         CommentTreeComponent,
+        YoutubeComponent,
+        RedditComponent,
+        VimeoComponent,
+        DailymotionComponent,
+        GfycatComponent,
+        ImgurComponent
     ],
   bootstrap: [AppComponent]
 })
