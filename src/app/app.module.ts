@@ -7,7 +7,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule } from '@angular/material';
+import { MatIconModule, MatListModule, MatAutocompleteModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,7 +18,7 @@ import { ScreenComponent } from './screen/screen.component';
 import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 import { CommentComponent } from './comment-tree/comment/comment.component';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatChipsModule } from '@angular/material/chips';
 
@@ -29,6 +30,7 @@ import { GfycatComponent } from './embedable/gfycat/gfycat.component';
 import { DailymotionComponent } from './embedable/dailymotion/dailymotion.component';
 import { YoutubeComponent } from './embedable/youtube/youtube.component';
 import { TwitterComponent } from './embedable/twitter/twitter.component';
+import { ChannelPickerComponent } from './watch-tv/channel-picker/channel-picker.component';
 
 const appRoutes: Routes = [
     { path: '', component: WatchTvComponent },
@@ -49,10 +51,13 @@ const appRoutes: Routes = [
       DailymotionComponent,
       GfycatComponent,
       ImgurComponent,
-      TwitterComponent
+      TwitterComponent,
+      ChannelPickerComponent
   ],
     imports: [
+    ReactiveFormsModule,
     FormsModule,
+    MatAutocompleteModule,
     MatInputModule,
     MatChipsModule,
     HttpClientModule,

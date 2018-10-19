@@ -1,6 +1,6 @@
 import { Observable, of } from 'rxjs';
 import {Video, ChannelService } from './../services/channel.service';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -12,7 +12,8 @@ export class WatchTvService {
     private currentIndex: number;
     private initialized: boolean;
     private selectedSubredditName = 'videos';
-    private suggestedSubredditNameList = [
+    public currentVideoUpdated: EventEmitter<Video> = new EventEmitter();
+    public readonly suggestedSubredditNameList = [
         'videos',
         'aww',
         'oddlysatisfying',
@@ -43,6 +44,10 @@ export class WatchTvService {
     }
 
     private getVideo(index): Video {
+        if (this.currentIndex !== index) {
+            this.currentVideoUpdated.emit(this.videos[index]);
+        }
+
         this.currentIndex = index;
         return this.videos[this.currentIndex];
     }
@@ -78,8 +83,12 @@ export class WatchTvService {
     }
 
     public setSubredditName(subredditName: string): Observable<Video> {
-        this.selectedSubredditName = subredditName;
-        this.videos = [];
-        return this.next();
+        if (this.selectedSubredditName.toLowerCase() !== subredditName.toLowerCase()) {
+            this.selectedSubredditName = subredditName;
+            this.videos = [];
+            return this.next();
+        } else {
+            return of();
+        }
     }
 }

@@ -30,15 +30,16 @@ export class WatchTvComponent implements OnInit {
     }
 
     public previous() {
-        this.tv.previous().subscribe(video => this.setVideo(video));
+        this.tv.previous().subscribe();
     }
 
     public next() {
-        this.tv.next().subscribe(video => this.setVideo(video));
+        this.tv.next().subscribe();
     }
 
     ngOnInit() {
         this.next();
+        this.tv.currentVideoUpdated.subscribe(video => this.setVideo(video));
     }
 
     openBottomSheet(): void {

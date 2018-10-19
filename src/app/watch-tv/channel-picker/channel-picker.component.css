@@ -1,0 +1,19 @@
+.input-symbol-r {
+    position: relative;
+}
+.input-symbol-r input {
+    padding-left:18px;
+}
+.input-symbol-r:before {
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
+
+.small-input {
+    width: 140px;
+}
+
+.green {
+    color: green;
+}
