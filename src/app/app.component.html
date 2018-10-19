@@ -6,10 +6,10 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="false">
-      <mat-toolbar>
+      <mat-toolbar color="accent">
+          <h2 class="mat-h2">Videos</h2>
       </mat-toolbar>
-      <mat-nav-list>
-      </mat-nav-list>
+      <rtv-video-list></rtv-video-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar style="padding:0; height:38px; background:white">

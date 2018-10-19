@@ -1,0 +1,29 @@
+@import "../../global-theme.scss";
+
+.video-listing {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    width: 50vw;
+    max-width: 250px;
+    min-height: 50px;
+    overflow: hidden;
+    max-height: 50px;
+}
+
+.thumbnail {
+    height: 50px;
+    width: 50px;
+    background-color: #e7e7e7;
+    margin: 9px;
+    border-radius: 3px;
+}
+
+.selected {
+    background: mat-color($candy-app-accent, 100);
+}

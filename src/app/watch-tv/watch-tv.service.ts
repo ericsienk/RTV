@@ -9,10 +9,11 @@ import { map } from 'rxjs/operators';
       
 export class WatchTvService {
     private videos: Video[];
-    private currentIndex: number;
+    public currentIndex: number; /*make api for knowing selected video */
     private initialized: boolean;
     private selectedSubredditName = 'videos';
     public currentVideoUpdated: EventEmitter<Video> = new EventEmitter();
+    public videoListUpdated: EventEmitter<Video[]> = new EventEmitter();
     public readonly suggestedSubredditNameList = [
         'videos',
         'aww',
@@ -30,6 +31,7 @@ export class WatchTvService {
         this.selectedSubredditName = subreddit;
         return this.channelService.getVideos(subreddit, 100, lastVideo).pipe(map(videos => {
             this.videos = this.videos.concat(videos || []);
+            this.videoListUpdated.emit(this.videos);
             this.initialized = true;
             return this.initialized;
         }));
@@ -41,6 +43,11 @@ export class WatchTvService {
 
     public hasPrevious(): boolean {
         return this.initialized && this.currentIndex > 0 && this.videos.length > 0;
+    }
+
+    /* TODO use video id instead of index */
+    public setCurrentVideo(index) {
+        this.getVideo(index);
     }
 
     private getVideo(index): Video {
@@ -86,6 +93,7 @@ export class WatchTvService {
         if (this.selectedSubredditName.toLowerCase() !== subredditName.toLowerCase()) {
             this.selectedSubredditName = subredditName;
             this.videos = [];
+            this.currentIndex = -1;
             return this.next();
         } else {
             return of();

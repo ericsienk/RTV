@@ -9,7 +9,8 @@ export class Video {
         public domain: string,
         public title: string,
         public id: string,
-        public author: string
+        public author: string,
+        public thumbnail: string
     ) {}
 }   
 
@@ -30,6 +31,7 @@ export class Comment {
       
 export class ChannelService {
     readonly baseRedditUrl = 'https://www.reddit.com/r/';
+    readonly nsfwThumbnail = 'https://b.thumbs.redditmedia.com/lq84sNOZTIJTTYqp6DtrMp1paf4k-ORELg0A5T8bd9k.jpg';
 
     constructor(private http: HttpClient) { }
     
@@ -50,7 +52,8 @@ export class ChannelService {
                         data['domain'],
                         data['title'],
                         data['id'],
-                        data['author']
+                        data['author'],
+                        data['thumbnail'] === 'nsfw' ? this.nsfwThumbnail : data['thumbnail']
                     );
 
                     videos.push(video);

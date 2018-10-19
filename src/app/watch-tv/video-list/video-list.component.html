@@ -1,0 +1,10 @@
+<mat-nav-list style="padding:0">
+    <mat-list-item *ngFor="let video of videos; index as i" style="height: inherit" 
+    [ngClass]="{selected: (i === tv.currentIndex)}"
+    (click)="tv.setCurrentVideo(i)">
+        <div class="thumbnail-wrapper">
+            <img class="thumbnail" [src]="video.thumbnail">
+        </div>
+        <div class="mat-caption video-listing">{{video.title}}</div>
+    </mat-list-item>
+</mat-nav-list>

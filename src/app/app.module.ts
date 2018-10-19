@@ -31,6 +31,7 @@ import { DailymotionComponent } from './embedable/dailymotion/dailymotion.compon
 import { YoutubeComponent } from './embedable/youtube/youtube.component';
 import { TwitterComponent } from './embedable/twitter/twitter.component';
 import { ChannelPickerComponent } from './watch-tv/channel-picker/channel-picker.component';
+import { VideoListComponent } from './watch-tv/video-list/video-list.component';
 
 const appRoutes: Routes = [
     { path: '', component: WatchTvComponent },
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
       GfycatComponent,
       ImgurComponent,
       TwitterComponent,
-      ChannelPickerComponent
+      ChannelPickerComponent,
+      VideoListComponent
   ],
     imports: [
     ReactiveFormsModule,
