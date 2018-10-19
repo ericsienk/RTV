@@ -7,7 +7,7 @@ import { EmbedableDirective } from '../embedable/embedable.directive';
 @Component({
   selector: 'rtv-screen',
   templateUrl: './screen.component.html',
-  styleUrls: ['./screen.component.css']
+  styleUrls: ['./screen.component.scss']
 })
 export class ScreenComponent implements OnChanges {
     @Input() video: Video;

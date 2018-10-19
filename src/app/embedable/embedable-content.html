@@ -11,6 +11,7 @@
 </ng-template>
 <ng-template #htmlVideo>
         <video controls 
+            id="htmlVideo"
             autoplay 
             width="100%" 
             height="100%" 
@@ -18,4 +19,7 @@
             webkitallowfullscreen mozallowfullscreen allowfullscreen>
                 <source type="video/mp4" [src]="source"/>
         </video>
+        <audio height="20px" width="100%"  controls id="htmlAudio" autoplay *ngIf="audio">
+            <source type="audio/mp3" [src]="audio"/>
+        </audio>
 </ng-template>

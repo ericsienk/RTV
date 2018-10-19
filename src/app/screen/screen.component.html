@@ -1,9 +1,15 @@
 <div class="resp-container">
     <div class="resp-content respImgWrapper">
         <ng-template rtvEmbedable></ng-template>
-        <div *ngIf="link">
-            <h4>Video format is not supported yet</h4>
-            <a [href]="link">{{link}}</a>
+        <div *ngIf="link" class="no-content">
+            <h1 style="margin:0" class="mat-headline">Whoops...</h1>
+            <h4>The requested content is not supported yet.</h4>
+            <div class="no-content-wrapper">
+                <a target="_blank" class="no-content-link" [href]="link">
+                    {{link}}
+                    <fa class="no-content-icon" name="external-link"></fa>
+                </a>
+            </div>
         </div>
     </div>
 </div>

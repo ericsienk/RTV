@@ -15,7 +15,7 @@ export class RedditComponent extends EmbedableComponent implements OnInit {
         if (this.isImage) {
             this.setSource(this.url);
         } else {
-            this.setSource(this.url + '/DASH_600_K');
+            this.setSource(this.url + '/DASH_600_K', false, this.url + '/audio');
         }
     }
 }
