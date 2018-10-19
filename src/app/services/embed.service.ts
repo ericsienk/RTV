@@ -21,6 +21,9 @@ export class EmbedService {
             'youtu.be': {
                 component: YoutubeComponent,
             },
+            'm.youtube.com': {
+                component: YoutubeComponent
+            },
             'vimeo.com': {
                 component: VimeoComponent,
             },
