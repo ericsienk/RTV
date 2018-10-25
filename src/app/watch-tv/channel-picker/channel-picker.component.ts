@@ -15,6 +15,7 @@ export class ChannelPickerComponent implements OnInit {
     filteredOptions: Observable<string[]>;
     lastValue: string;
     isChanged: boolean;
+    isFormOpen: boolean;
   
     constructor(private tv: WatchTvService) {
         this.options = tv.suggestedSubredditNameList;
