@@ -11,7 +11,7 @@ export class WatchTvService {
     private videos: Video[];
     public currentIndex: number; /*make api for knowing selected video */
     private initialized: boolean;
-    private selectedSubredditName = 'videos';
+    private selectedSubredditName = 'aww';
     public currentVideoUpdated: EventEmitter<Video> = new EventEmitter();
     public videoListUpdated: EventEmitter<Video[]> = new EventEmitter();
     public readonly suggestedSubredditNameList = [

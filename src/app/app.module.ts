@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { EmbedableDirective } from './embedable/embedable.directive';
 import { VimeoComponent } from './embedable/vimeo/vimeo.component';
@@ -73,6 +74,7 @@ const appRoutes: Routes = [
     MatBottomSheetModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
+    MatExpansionModule,
     RouterModule.forRoot(
         appRoutes,
         { enableTracing: true } // <-- debugging purposes only

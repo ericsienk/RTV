@@ -1,0 +1,16 @@
+@import "../global-theme.scss";
+
+.global-input {
+    display: inline-block;
+    margin-left: 50px;
+    font-size: 14px;
+}
+
+.header-height {
+    height: #{$header-height};
+}
+
+.main-header {
+    padding: 0;
+    background: white;
+}

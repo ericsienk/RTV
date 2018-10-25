@@ -1,19 +1,26 @@
-<form>
-    <mat-form-field class="small-input">
-      <span class="input-symbol-r">r/</span>
-      <input type="text" class="small-input" onclick="this.select()" spellcheck="false" matInput [formControl]="input" [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <button
-    class="submit-button"
-    type="button"
-    aria-label="Set subreddit"
-    mat-icon-button
-    (click)="setChannel()">
-    <fa name="check-circle" [ngClass]="{green: !isChanged}"></fa>
-  </button>
-</form>
+<div>
+    <button mat-icon-button (click)="isFormOpen = !isFormOpen">
+            <fa name="chevron-down"></fa>
+    </button>
+    <div *ngIf="isFormOpen" class="floating-menu">
+        <form>
+            <mat-form-field class="small-input">
+                <span class="input-symbol-r">r/</span>
+                <input type="text" class="small-input" onclick="this.select()" spellcheck="false" matInput [formControl]="input" [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <button
+                class="submit-button"
+                type="button"
+                aria-label="Set subreddit"
+                mat-icon-button
+                (click)="setChannel()">
+                <fa name="check-circle" [ngClass]="{green: !isChanged}"></fa>
+            </button>
+        </form>
+    </div>
+</div>

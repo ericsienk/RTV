@@ -5,8 +5,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    max-height: calc(84vh - 38px);
-    height: calc(80vw - 38px);
+    max-height: calc(84vh - #{$header-height});
+    height: calc(80vw - #{$header-height});
     border: 0;
     background: black;
 }
@@ -14,8 +14,8 @@
 .resp-container {
     position: relative;
     overflow: hidden;
-    max-height: calc(84vh - 38px);
-    height: calc(80vw - 38px);
+    max-height: calc(84vh - #{$header-height});
+    height: calc(80vw - #{$header-height});
 }
 
 .no-content {
@@ -44,4 +44,5 @@
     padding: 12px;
     border-radius: 24px;
     width: fit-content;
+    word-break: break-all;
 }
